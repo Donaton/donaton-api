@@ -38,10 +38,22 @@ public class CasosController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Caso creado exitosamente");
     }
 
+    @GetMapping
+    public ResponseEntity<?> listarCasos(){
+        List<Casos> casos = casosService.listarCasos();
+
+        if (casos.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.CREATED).body("No se encontraron Casos existentes");
+        }
+
+        return new ResponseEntity<List<Casos>>(casos, HttpStatus.CREATED);
+
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminarCasos(@PathVariable("id") Long idCasos){
             casosService.eliminarCasos(idCasos);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Eliminado");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Caso eliminado correctamente");
     }
 }
 

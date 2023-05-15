@@ -23,7 +23,6 @@ public class Casos {
     @Getter
     @Setter
     @NotNull(message = "La entidad Nombre no puede estar vacio")
-    @NotBlank(message = "La entidad Nombre no debe quedar en blanco")
     @Size(min = 4, message = "La entidad Nombre debe tener como minimo 4 caracteres")
     @Column(nullable = false)
     private String nombres;
