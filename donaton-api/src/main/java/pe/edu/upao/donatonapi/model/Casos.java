@@ -18,7 +18,7 @@ public class Casos {
     @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long idCasos;
 
     @Getter
     @Setter

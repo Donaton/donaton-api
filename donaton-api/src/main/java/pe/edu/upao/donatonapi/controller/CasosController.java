@@ -23,7 +23,7 @@ public class CasosController {
         this.casosService = casosService;
     }
 
-    @PostMapping
+    @PostMapping // Crear Casos
     public ResponseEntity<?> addCasos(@Valid @RequestBody Casos casos, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             String errorMessage = "Error";
@@ -36,6 +36,12 @@ public class CasosController {
 
         Casos newCasos = casosService.addCasos(casos);
         return ResponseEntity.status(HttpStatus.CREATED).body("Caso creado exitosamente");
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminarCasos(@PathVariable("id") Long idCasos){
+            casosService.eliminarCasos(idCasos);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Eliminado");
     }
 }
 

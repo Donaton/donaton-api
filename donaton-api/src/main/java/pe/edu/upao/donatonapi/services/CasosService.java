@@ -5,6 +5,7 @@ import pe.edu.upao.donatonapi.model.Casos;
 import pe.edu.upao.donatonapi.repository.CasosRepository;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 
 @Service
 public class CasosService {
@@ -16,5 +17,9 @@ public class CasosService {
 
     public Casos addCasos(Casos casos){
         return casosRepository.save(casos);
+    }
+
+    public void eliminarCasos(Long idCasos){
+        casosRepository.deleteAllById(Collections.singleton(idCasos));
     }
 }
