@@ -1,5 +1,4 @@
 package pe.edu.upao.donatonapi.model;
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Donante {
+public class Damnificado {
 
     @Getter @Setter
     @EqualsAndHashCode.Include
