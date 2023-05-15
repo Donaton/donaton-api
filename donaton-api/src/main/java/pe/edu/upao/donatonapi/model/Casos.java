@@ -19,12 +19,12 @@ public class Casos {
 
     @Getter
     @Setter
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false)
     private String nombres;
 
     @Getter
     @Setter
-    @Column(nullable = false, length = 300)
+    @Column(nullable = false)
     private String descripcion;
 
     @ManyToOne
