@@ -24,7 +24,12 @@ public class CasosService {
         return casosRepository.findAll();
     }
 
+    public Casos findById(Long idCasos){
+        return casosRepository.findById(idCasos).orElse(null);
+    }
+
     public void eliminarCasos(Long idCasos){
-        casosRepository.deleteAllById(Collections.singleton(idCasos));
+
+        casosRepository.deleteById(idCasos);
     }
 }

@@ -35,25 +35,31 @@ public class CasosController {
         }
 
         Casos newCasos = casosService.addCasos(casos);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Caso creado exitosamente");
+        return ResponseEntity.status(HttpStatus.OK).body("Caso creado exitosamente");
     }
 
-    @GetMapping
+    @GetMapping // Listar Casos Existentes
     public ResponseEntity<?> listarCasos(){
         List<Casos> casos = casosService.listarCasos();
 
         if (casos.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.CREATED).body("No se encontraron Casos existentes");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron Casos existentes");
         }
 
-        return new ResponseEntity<List<Casos>>(casos, HttpStatus.CREATED);
+        return new ResponseEntity<List<Casos>>(casos, HttpStatus.OK);
 
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}") //Borrar Caso
     public ResponseEntity<?> eliminarCasos(@PathVariable("id") Long idCasos){
+            Casos caso = casosService.findById(idCasos); // Se utiliza el metodo FindById para buscar el caso
+
+            if (caso == null){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El Caso no ha sido encontrado");
+            } // Retorna un mensaje si el caso no ha sido encontrado en la base de datos
+
             casosService.eliminarCasos(idCasos);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Caso eliminado correctamente");
+        return ResponseEntity.status(HttpStatus.OK).body("Caso eliminado correctamente");
     }
 }
 
