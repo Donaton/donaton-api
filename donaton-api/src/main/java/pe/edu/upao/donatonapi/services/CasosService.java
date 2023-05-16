@@ -4,8 +4,6 @@ import org.springframework.stereotype.Service;
 import pe.edu.upao.donatonapi.model.Casos;
 import pe.edu.upao.donatonapi.repository.CasosRepository;
 
-import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -26,6 +24,10 @@ public class CasosService {
 
     public Casos findById(Long idCasos){
         return casosRepository.findById(idCasos).orElse(null);
+    }
+
+    public Casos editarCasos(Casos casos){
+        return casosRepository.save(casos);
     }
 
     public void eliminarCasos(Long idCasos){

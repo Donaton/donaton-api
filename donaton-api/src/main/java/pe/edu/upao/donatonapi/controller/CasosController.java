@@ -50,6 +50,33 @@ public class CasosController {
 
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> editarCasos(@PathVariable("id") Long idCasos, @Valid @RequestBody Casos casos,
+                                             BindingResult bindingResult){
+        //Verirficar si el caso existe
+        Casos casoExistente = casosService.findById(idCasos);
+        if (casoExistente == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El Caso no ha sido encontrado");
+        }
+
+        //Validar datos del caso
+        if (bindingResult.hasErrors()) {
+            String errorMessage = "Error";
+            List<String> errors = bindingResult.getAllErrors().stream()
+                    .map(error -> error.getDefaultMessage())
+                    .collect(Collectors.toList());
+
+            return ResponseEntity.badRequest().body(errorMessage + "" + errors);
+        }
+
+        casoExistente.setNombres(casos.getNombres());
+        casoExistente.setDescripcion(casos.getDescripcion());
+
+        Casos casoActualizado = casosService.editarCasos(casoExistente);
+        return ResponseEntity.ok("Caso Actualizado Exitosamente");
+
+    }
+
     @DeleteMapping("/{id}") //Borrar Caso
     public ResponseEntity<?> eliminarCasos(@PathVariable("id") Long idCasos){
             Casos caso = casosService.findById(idCasos); // Se utiliza el metodo FindById para buscar el caso
