@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class TipoDeDesposito {
+public class TipoDePago {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

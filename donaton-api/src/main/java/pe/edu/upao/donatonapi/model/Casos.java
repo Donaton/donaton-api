@@ -49,7 +49,7 @@ public class Casos {
     private Ciudad ciudad;
 
     @OneToMany
-    private List<TipoDeDesposito> tipoDeDesposito;
+    private List<TipoDePago> tipoDeDesposito;
 
     //Registra la fecha actual del sistema cuando el caso es creado
     @PrePersist
