@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upao.donatonapi.model.Casos;
+import pe.edu.upao.donatonapi.repository.CasosRepository;
 import pe.edu.upao.donatonapi.services.CasosService;
 
 import java.util.List;
@@ -75,6 +76,16 @@ public class CasosController {
         Casos casoActualizado = casosService.editarCasos(casoExistente);
         return ResponseEntity.ok("Caso Actualizado Exitosamente");
 
+    }
+    @GetMapping("/buscarPorNombre")
+    public ResponseEntity<?> buscarPorNombre(@RequestParam("nombre") String nombres){
+            List<Casos> casos = casosService.buscarCasosPorNombre("%" + nombres + "%");
+            if (casos.isEmpty()){
+                String errorMensaje = "No se ha econtrado casos similares";
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMensaje);
+
+            }
+            return ResponseEntity.ok(casos);
     }
 
     @DeleteMapping("/{id}") //Borrar Caso
