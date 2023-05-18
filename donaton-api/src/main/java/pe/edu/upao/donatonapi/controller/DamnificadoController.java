@@ -43,8 +43,13 @@ public class DamnificadoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminarDamnificado(@PathVariable("id") Long id){
+       Damnificado damnificado= damnificadoService.findById(id);
+
+        if (damnificado == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El perfil no ha sido encontrado");
+        }
         damnificadoService.eliminarDamnificado(id);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Perfil eliminado correctamente");
+        return ResponseEntity.status(HttpStatus.OK).body("Perfil eliminado correctamente");
     }
 
 }

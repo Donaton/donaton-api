@@ -24,4 +24,7 @@ public class DamnificadoService{
         damnificadoRepository.deleteAllById(Collections.singleton(id));
     }
 
+    public Damnificado findById(Long id) {
+        return damnificadoRepository.findById(id).orElse(null);
+    }
 }
