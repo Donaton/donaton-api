@@ -11,10 +11,10 @@ import lombok.*;
 public class Donante {
 
     @Getter @Setter
-    @EqualsAndHashCode.Include
+    //@EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private long id;
 
     @Getter @Setter
     @Column(length = 50, nullable = false)
