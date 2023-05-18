@@ -1,8 +1,10 @@
 package pe.edu.upao.donatonapi.services;
+import org.springframework.stereotype.Service;
 import pe.edu.upao.donatonapi.model.Donante;
 import pe.edu.upao.donatonapi.repository.DonanteRepository;
 
 import java.util.List;
+@Service
 public class DonanteService {
     public final DonanteRepository donanteRepository;
 
