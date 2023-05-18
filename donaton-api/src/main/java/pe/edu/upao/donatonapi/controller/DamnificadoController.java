@@ -10,6 +10,7 @@ import pe.edu.upao.donatonapi.model.Damnificado;
 import pe.edu.upao.donatonapi.services.DamnificadoService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -24,7 +25,7 @@ public class DamnificadoController {
         this.damnificadoService = damnificadoService;
     }
 
-    @PostMapping // registrar damnificado
+    @PostMapping("/registro") // registrar damnificado
     public ResponseEntity<?> addDamnificado(@Valid @RequestBody Damnificado damnificado, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             String errorMessage = "Error";
@@ -38,8 +39,15 @@ public class DamnificadoController {
         Damnificado newDamnificado = DamnificadoService.addDamnificado(damnificado);
         return ResponseEntity.status(HttpStatus.CREATED).body("Registro exitoso");
     }
-}
 
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminarDamnificado(@PathVariable("id") Long id){
+        damnificadoService.eliminarDamnificado(id);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Perfil eliminado correctamente");
+    }
+
+}
 
 
 

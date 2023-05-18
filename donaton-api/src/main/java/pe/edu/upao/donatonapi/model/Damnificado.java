@@ -13,7 +13,7 @@ public class Damnificado {
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Getter @Setter
     @Column(length = 50, nullable = false)
