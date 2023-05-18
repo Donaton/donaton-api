@@ -5,7 +5,8 @@ import pe.edu.upao.donatonapi.model.Damnificado;
 import pe.edu.upao.donatonapi.repository.DamnificadoRepository;
 
 import java.util.Collections;
-import java.util.Optional;
+import java.util.List;
+
 
 @Service
 public class DamnificadoService{
@@ -31,4 +32,15 @@ public class DamnificadoService{
     public Damnificado modificarDamnificado(Damnificado damnificado) {
         return damnificadoRepository.save(damnificado);
     }
+
+    public List<Damnificado> listarDamnificados() {
+        return damnificadoRepository.findAll();
+    }
+
+    public List<Damnificado> buscarCasosPorDistrito(String distrito) {
+
+        return damnificadoRepository.findByDistritoLikeIgnoreCase(distrito);
+    }
+
+
 }

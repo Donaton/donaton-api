@@ -10,7 +10,6 @@ import pe.edu.upao.donatonapi.model.Damnificado;
 import pe.edu.upao.donatonapi.services.DamnificadoService;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -80,6 +79,30 @@ public class DamnificadoController {
         Damnificado damnificadoActualizado = damnificadoService.modificarDamnificado(damnificadoExistente);
         return ResponseEntity.ok("Perfil actualizado exitosamente");
 
+    }
+
+    @GetMapping("/lista")
+    public ResponseEntity<?> listarDamnificados(){
+        List<Damnificado> damnificados = damnificadoService.listarDamnificados();
+
+        if (damnificados.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron perfiles existentes");
+        }
+
+        return new ResponseEntity<List<Damnificado>>(damnificados, HttpStatus.OK);
+
+    }
+
+
+    @GetMapping("/busqueda")
+    public ResponseEntity<?> buscarPorDistrito(@RequestParam("distrito") String distrito){
+        List<Damnificado> damnificado = damnificadoService.buscarCasosPorDistrito("%" + distrito + "%");
+        if (damnificado.isEmpty()){
+            String errorMensaje = "No se han econtrado perfiles similares";
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMensaje);
+
+        }
+        return ResponseEntity.ok(damnificado);
     }
 
 }
