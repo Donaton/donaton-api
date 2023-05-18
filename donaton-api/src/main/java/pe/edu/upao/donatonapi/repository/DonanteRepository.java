@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface DonanteRepository extends JpaRepository<Donante, Long> {
-    List<Donante> findByNombreDonantes(String nombre);
+    List<Donante> findByNombresLikeDonante(String nombre);
 } //AEA
