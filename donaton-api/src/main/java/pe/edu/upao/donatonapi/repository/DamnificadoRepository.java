@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface DamnificadoRepository extends JpaRepository<Damnificado, Long> {
 
+     //Metodo de consulta Jpa, utilizando un filtro de busqueda que ignora mayusculas y minusculas.
      List<Damnificado> findByDistritoLikeIgnoreCase(String distrito) ;
 
 }

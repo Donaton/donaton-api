@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 public class DamnificadoController {
 
 
+    //Variable que representa al servicio utilizado en la clase y proporciona los metodos.
     private final DamnificadoService damnificadoService;
 
     @Autowired
@@ -24,6 +25,7 @@ public class DamnificadoController {
         this.damnificadoService = damnificadoService;
     }
 
+    //Endpoint que recibe una solicitud http post para crear un damnificado.
     @PostMapping("/registro") // registrar damnificado
     public ResponseEntity<?> addDamnificado(@Valid @RequestBody Damnificado damnificado, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -36,10 +38,10 @@ public class DamnificadoController {
         }
 
         Damnificado newDamnificado = DamnificadoService.addDamnificado(damnificado);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Registro exitoso");
+        return ResponseEntity.status(HttpStatus.OK).body("Registro exitoso");
     }
 
-
+    //Endpoint que recibe una solicitud http delete para borrar un damnificado.
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminarDamnificado(@PathVariable("id") Long id){
        Damnificado damnificado= damnificadoService.findById(id);
@@ -52,6 +54,7 @@ public class DamnificadoController {
     }
 
 
+    //Endpoint que recibe una solicitud http put para modificar los datos de un damnificado.
     @PutMapping("/{id}")
     public ResponseEntity<?> modificarDamnificado(@PathVariable("id") Long id, @Valid @RequestBody Damnificado damnificado,
                                          BindingResult bindingResult){
@@ -81,6 +84,7 @@ public class DamnificadoController {
 
     }
 
+    //Endpoint que recibe una solicitud http get para listar a todos los damnificados.
     @GetMapping("/lista")
     public ResponseEntity<?> listarDamnificados(){
         List<Damnificado> damnificados = damnificadoService.listarDamnificados();
@@ -93,7 +97,7 @@ public class DamnificadoController {
 
     }
 
-
+    //Endpoint que recibe una solicitud http get para buscar a todos los damnificados por distrito.
     @GetMapping("/busqueda")
     public ResponseEntity<?> buscarPorDistrito(@RequestParam("distrito") String distrito){
         List<Damnificado> damnificado = damnificadoService.buscarCasosPorDistrito("%" + distrito + "%");
