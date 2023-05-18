@@ -52,6 +52,36 @@ public class DamnificadoController {
         return ResponseEntity.status(HttpStatus.OK).body("Perfil eliminado correctamente");
     }
 
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> modificarDamnificado(@PathVariable("id") Long id, @Valid @RequestBody Damnificado damnificado,
+                                         BindingResult bindingResult){
+
+        Damnificado damnificadoExistente = damnificadoService.findById(id);
+        if (damnificadoExistente == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El perfil no ha sido encontrado");
+        }
+
+        if (bindingResult.hasErrors()) {
+            String errorMessage = "Error";
+            List<String> errors = bindingResult.getAllErrors().stream()
+                    .map(error -> error.getDefaultMessage())
+                    .collect(Collectors.toList());
+
+            return ResponseEntity.badRequest().body(errorMessage + "" + errors);
+        }
+
+        damnificadoExistente.setRegion(damnificado.getRegion());
+        damnificadoExistente.setProvincia(damnificado.getProvincia());
+        damnificadoExistente.setDistrito(damnificado.getDistrito());
+        damnificadoExistente.setDireccion(damnificado.getDireccion());
+        damnificadoExistente.setTelefono(damnificado.getTelefono());
+
+        Damnificado damnificadoActualizado = damnificadoService.modificarDamnificado(damnificadoExistente);
+        return ResponseEntity.ok("Perfil actualizado exitosamente");
+
+    }
+
 }
 
 

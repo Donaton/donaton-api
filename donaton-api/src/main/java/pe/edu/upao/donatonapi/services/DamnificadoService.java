@@ -27,4 +27,8 @@ public class DamnificadoService{
     public Damnificado findById(Long id) {
         return damnificadoRepository.findById(id).orElse(null);
     }
+
+    public Damnificado modificarDamnificado(Damnificado damnificado) {
+        return damnificadoRepository.save(damnificado);
+    }
 }
