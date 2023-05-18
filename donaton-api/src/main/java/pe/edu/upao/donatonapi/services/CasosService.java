@@ -32,9 +32,8 @@ public class CasosService {
 
     public List<Casos> buscarCasosPorNombre(String nombres) {
 
-        return casosRepository.findByNombresLikeIgnoreCase("%" + nombres + "%");
+        return casosRepository.findByNombresLikeIgnoreCase(nombres);
     }
-
     public void eliminarCasos(Long idCasos){
 
         casosRepository.deleteById(idCasos);
