@@ -13,7 +13,7 @@ import pe.edu.upao.donatonapi.services.DonanteService;
 import java.util.List;
 import java.util.stream.Collectors;
 @RestController
-@RequestMapping("/donantes")
+@RequestMapping("/donante")
 public class DonanteController {
 
     private final DonanteService donanteService;
