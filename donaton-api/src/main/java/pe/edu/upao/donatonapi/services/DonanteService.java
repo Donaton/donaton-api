@@ -26,9 +26,9 @@ public class DonanteService {
         return donanteRepository.save(donante);
     }
 
-    public List<Donante> buscarDonantesPorNombre(String nombres) {
+    public List<Donante> buscarDonantesPorNombre(String nombre) {
 
-        return donanteRepository.findByNombresLikeIgnoreCase( nombres);
+        return donanteRepository.findByNombresLikeIgnoreCase( nombre);
     }
 
     public void eliminarDonantes(Long idDonante){
