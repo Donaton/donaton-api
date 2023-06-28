@@ -1,5 +1,5 @@
 package pe.edu.upao.donatonapi.model;
-
+import java.util.List;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,7 +14,7 @@ public class Donante {
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer ID_donante;
 
     @Getter @Setter
     @Column(length = 50, nullable = false)
@@ -25,7 +25,14 @@ public class Donante {
     private String email;
 
     @Getter @Setter
-    @Column(name = "edad", nullable = false, length = 10)
-    private String edad;
+    @Column(name = "telefono", nullable = false, length = 10)
+    private String telefono;
+
+    @Getter @Setter
+    @Column(name = "ciudad", nullable = false, length = 30)
+    private String ciudad;
+
+    @OneToMany(mappedBy = "donante")
+    private List<Donacion> donacion;
 
 }
