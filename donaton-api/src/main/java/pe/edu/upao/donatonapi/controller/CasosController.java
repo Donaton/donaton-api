@@ -24,7 +24,7 @@ public class CasosController {
     }
 
     @PostMapping // Crear Casos
-    public ResponseEntity<?> addCasos(@Valid @RequestBody Casos casos, BindingResult bindingResult) {
+    public ResponseEntity<?> addCaso(@Valid @RequestBody Casos casos, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             String errorMessage = "Error";
             List<String> errors = bindingResult.getAllErrors().stream()
@@ -34,7 +34,7 @@ public class CasosController {
             return ResponseEntity.badRequest().body(errorMessage + "" + errors);
         }
 
-        Casos newCasos = casosService.addCasos(casos);
+        Casos newCasos = casosService.addCaso(casos);
         return ResponseEntity.status(HttpStatus.CREATED).body("Caso creado exitosamente");
     }
 

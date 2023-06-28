@@ -1,6 +1,8 @@
 package pe.edu.upao.donatonapi.model;
+
 import jakarta.persistence.*;
 import lombok.*;
+import pe.edu.upao.donatonapi.model.Casos;
 
 @Data
 @AllArgsConstructor
@@ -9,55 +11,73 @@ import lombok.*;
 @Entity
 public class Damnificado {
 
-    @Getter @Setter
+    @Getter
+    @Setter
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter @Setter
-    @Column(length = 50, nullable = false)
+    @Getter
+    @Setter
+    @Column(nullable = false)
     private String nombre;
 
-    @Getter @Setter
-    @Column(name = "dni", nullable = false, length = 8)
+    @Getter
+    @Setter
+    @Column(nullable = false, length = 8)
     private int dni;
 
-    @Getter @Setter
-    @Column(name = "edad", nullable = false, length = 10)
+    @Getter
+    @Setter
+    @Column(nullable = false)
     private int edad;
 
-    @Getter @Setter
-    @Column(name = "genero", nullable = false, length = 10)
+    @Getter
+    @Setter
+    @Column(nullable = false)
     private String genero;
 
-    @Getter @Setter
-    @Column(name = "region", nullable = false, length = 30)
+    @Getter
+    @Setter
+    @Column(nullable = false)
     private String region;
 
-    @Getter @Setter
-    @Column(name = "provincia", nullable = false, length = 30)
+    @Getter
+    @Setter
+    @Column(nullable = false)
     private String provincia;
 
-    @Getter @Setter
-    @Column(name = "distrito", nullable = false, length = 30)
+    @Getter
+    @Setter
+    @Column(nullable = false)
     private String distrito;
 
-    @Getter @Setter
-    @Column(name = "direccion", nullable = false, length = 50)
+    @Getter
+    @Setter
+    @Column(nullable = false)
     private String direccion;
 
-    @Getter @Setter
-    @Column(name = "email",length = 50, nullable = false)
+    @Getter
+    @Setter
+    @Column(length = 50)
     private String email;
 
-    @Getter @Setter
-    @Column(name = "contraseña",length = 50, nullable = false)
+    @Getter
+    @Setter
+    @Column(length = 50)
     private String contraseña;
 
+    @Getter
+    @Setter
+    @Column(nullable = false)
+    private String telefono;
 
-    @Getter @Setter
-    @Column(name = "telefono", nullable = false, length = 9)
-    private int telefono;
+    @Getter
+    @Setter
+    @ManyToOne
+    private Casos caso;
+
+
 
 }

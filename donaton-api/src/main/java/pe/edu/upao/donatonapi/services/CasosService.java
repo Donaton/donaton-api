@@ -16,7 +16,7 @@ public class CasosService {
         this.casosRepository = casosRepository;
     }
 
-    public Casos addCasos(Casos casos){
+    public Casos addCaso(Casos casos){
         return casosRepository.save(casos);
     }
 
